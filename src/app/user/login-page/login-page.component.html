@@ -3,6 +3,7 @@
     <button mat-raised-button appGoogleLogin>
       <img src="/assets/google-logo.svg" /> Login with google
     </button>
+    <app-email-login></app-email-login>
   </div>
 
   <div *ngIf="afAuth.authState | async as user" class="logout">
