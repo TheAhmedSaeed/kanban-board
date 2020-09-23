@@ -67,6 +67,12 @@ export class BoardService {
       })
     );
   }
+  /**
+   * Updates the tasks on board
+   */
+  updateTasks(boardId: string, tasks: Task[]) {
+    return this.db.collection('boards').doc(boardId).update({ tasks });
+  }
 
   /**
    * Run a batch write to change he priority of each board for sorting

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginPageComponent, GoogleLoginDirective, EmailLoginComponent],
+  exports: [GoogleLoginDirective],
   imports: [CommonModule, UserRoutingModule, SharedModule, ReactiveFormsModule],
 })
 export class UserModule {}
