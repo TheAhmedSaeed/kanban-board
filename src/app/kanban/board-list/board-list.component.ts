@@ -16,9 +16,10 @@ export class BoardListComponent implements OnInit, OnDestroy {
   constructor(public boardService: BoardService) {}
 
   ngOnInit() {
-    this.sub = this.boardService
-      .getUserBoards()
-      .subscribe((boards) => (this.boards = boards));
+    this.sub = this.boardService.getUserBoards().subscribe((boards) => {
+      this.boards = boards;
+      console.log(boards);
+    });
   }
 
   ngOnDestroy() {

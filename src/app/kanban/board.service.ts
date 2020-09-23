@@ -17,6 +17,7 @@ export class BoardService {
 
   async createBoard(data: Board) {
     const user = await this.afAuth.currentUser;
+
     return this.db.collection('boards').add({
       ...data,
       uid: user.uid,
@@ -45,7 +46,7 @@ export class BoardService {
 
   removeTask(boardId: string, task: Task) {
     return this.db
-      .collection('board')
+      .collection('boards')
       .doc(boardId)
       .update({
         tasks: firebase.firestore.FieldValue.arrayRemove(task),
@@ -53,11 +54,11 @@ export class BoardService {
   }
 
   getUserBoards() {
-    return this.afAuth.authState.pipe(
+    return this.afAuth.user.pipe(
       switchMap((user) => {
         if (user) {
           return this.db
-            .collection<Board>('board', (ref) =>
+            .collection<Board>('boards', (ref) =>
               ref.where('uid', '==', user.uid).orderBy('priority')
             )
             .valueChanges({ idField: 'id' });
